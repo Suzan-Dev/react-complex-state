@@ -1,8 +1,16 @@
-import SayHello from "react-complex-state";
+import { faker } from "@faker-js/faker";
+import useComplexState from "react-complex-state";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 
+const generateFakeData = () => ({
+  fullName: faker.name.fullName(),
+  song: faker.music.songName(),
+});
+
 function App() {
+  const complexState = useComplexState([generateFakeData()]);
+
   return (
     <div className="App">
       <div>
@@ -14,7 +22,21 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <SayHello name="Kenshein" />
+
+      {complexState.value.map((item) => (
+        <div className="card" key={item.fullName}>
+          <h3>Name: {item.fullName}</h3>
+          <p>Liked Song: {item.song}</p>
+        </div>
+      ))}
+
+      <button onClick={() => complexState.insert(generateFakeData())}>
+        Add
+      </button>
+      <button onClick={() => complexState.update(generateFakeData(), 0)}>
+        Update
+      </button>
+      <button onClick={() => complexState.remove(0)}>Delete</button>
     </div>
   );
 }
