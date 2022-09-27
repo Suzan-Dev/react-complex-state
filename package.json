@@ -1,6 +1,8 @@
 {
   "name": "react-complex-state",
   "version": "1.0.0",
+  "description": "A complex local state made easy in react",
+  "author": "Suzan-Dev",
   "license": "MIT",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
@@ -23,5 +25,18 @@
   },
   "files": [
     "/lib"
-  ]
+  ],
+  "keywords": [
+    "react",
+    "react-hooks",
+    "state"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Suzan-Dev/react-complex-state.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Suzan-Dev/react-complex-state/issues"
+  },
+  "homepage": "https://github.com/Suzan-Dev/react-complex-state"
 }
