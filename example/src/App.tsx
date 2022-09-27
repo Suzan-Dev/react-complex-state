@@ -30,7 +30,7 @@ function App() {
         </div>
       ))}
 
-      <button onClick={() => complexState.insert(generateFakeData())}>
+      <button onClick={() => complexState.insert(generateFakeData(), 0)}>
         Add
       </button>
       <button onClick={() => complexState.update(generateFakeData(), 0)}>

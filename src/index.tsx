@@ -6,16 +6,19 @@ import { useState } from "react";
 const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
   const [complexState, setComplexState] = useState(initialValue);
 
-  const insert = (data: T) => {
-    setComplexState((prevState) => [...prevState, data]);
+  const insert = (data: T, index: number = -1) => {
+    if (complexState[index] === undefined || index < 0) {
+      setComplexState((prevState) => [...prevState, data]);
+      return;
+    }
+
+    setComplexState((prevState) => {
+      return prevState.slice(0, index).concat(data, prevState.slice(index));
+    });
   };
 
-  // const preInsert = (data: T) => {
-  //   setComplexState((prevState) => [data, ...prevState]);
-  // };
-
   const update = (data: T, index: number) => {
-    if (complexState[index] === undefined) {
+    if (complexState[index] === undefined || index < 0) {
       return;
     }
 
@@ -27,7 +30,7 @@ const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
   };
 
   const remove = (index: number) => {
-    if (complexState[index] === undefined) {
+    if (complexState[index] === undefined || index < 0) {
       return;
     }
 
