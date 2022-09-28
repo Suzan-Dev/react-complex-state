@@ -1,13 +1,15 @@
 import { useState } from "react";
+import cloneDeep from "./utils/cloneDeep";
+import isInvalidOrNegativeIndex from "./utils/validateIndex";
 
 /**
- * Returns a stateful value, a function to update it and much more.
+ * A custom hook that makes it easy when working with complex state. Only supports state that has an array type.
  */
 const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
   const [complexState, setComplexState] = useState(initialValue);
 
   const insert = (data: T, index: number = -1) => {
-    if (complexState[index] === undefined || index < 0) {
+    if (isInvalidOrNegativeIndex(index, complexState)) {
       setComplexState((prevState) => [...prevState, data]);
       return;
     }
@@ -18,7 +20,7 @@ const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
   };
 
   const update = (data: T, index: number) => {
-    if (complexState[index] === undefined || index < 0) {
+    if (isInvalidOrNegativeIndex(index, complexState)) {
       return;
     }
 
@@ -29,8 +31,28 @@ const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
     });
   };
 
+  const partialUpdate = (data: Partial<T>, index: number) => {
+    // To make sure that this function is only used when the state contains array of objects
+    if (typeof data !== "object") {
+      return;
+    }
+
+    if (isInvalidOrNegativeIndex(index, complexState)) {
+      return;
+    }
+
+    setComplexState((prevState) => {
+      const newClonedComplexState = cloneDeep(prevState);
+      newClonedComplexState[index] = {
+        ...newClonedComplexState[index],
+        ...data,
+      };
+      return newClonedComplexState;
+    });
+  };
+
   const remove = (index: number) => {
-    if (complexState[index] === undefined || index < 0) {
+    if (isInvalidOrNegativeIndex(index, complexState)) {
       return;
     }
 
@@ -44,6 +66,7 @@ const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
     setValue: setComplexState,
     insert,
     update,
+    partialUpdate,
     remove,
   };
 };

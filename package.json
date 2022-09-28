@@ -8,7 +8,7 @@
   "module": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
   "scripts": {
-    "start": "tsc -w",
+    "dev": "tsc -w",
     "build": "pnpm build:esm && pnpm build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir lib/cjs"
