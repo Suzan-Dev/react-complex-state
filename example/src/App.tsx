@@ -36,6 +36,13 @@ function App() {
       <button onClick={() => complexState.update(generateFakeData(), 0)}>
         Update
       </button>
+      <button
+        onClick={() =>
+          complexState.partialUpdate({ fullName: faker.name.fullName() }, 0)
+        }
+      >
+        Partial Update
+      </button>
       <button onClick={() => complexState.remove(0)}>Delete</button>
     </div>
   );
