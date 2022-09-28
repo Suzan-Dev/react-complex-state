@@ -62,7 +62,7 @@ export default App;
 | insert        | function | `(data: T, index?: number) => void` <br /> Add data to your state at an index. By default it will add the data at the end.                                                                           |
 | update        | function | `(data: T, index: number) => void` <br /> Update your state data at an index.                                                                                                                        |
 | partialUpdate | function | `(data: Partial<T>, index: number) => void` <br /> Update only the data that you passed at an index. Other remaining data will be unchanged. (Only usable when your state contains array of objects) |
-| remove        | function | `(data: Partial<T>, index: number) => void` <br /> Delete your state data at an index.                                                                                                               |
+| remove        | function | `(index: number) => void` <br /> Delete your state data at an index.                                                                                                                                 |
 
 ## License
 
