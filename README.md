@@ -33,7 +33,7 @@ $ pnpm add react-complex-state
 Pass the state you want to use in `useComplexState` hook like you do in `useState`.
 
 ```jsx
-import useComplexState from "react-complex-state";
+import { useComplexState } from "react-complex-state";
 
 function App() {
   const complexState = useComplexState(["John", "William"]);
@@ -53,13 +53,14 @@ function App() {
 export default App;
 ```
 
-### Returns
+## Returns
 
 | return        | type     | description                                                                                                                                                                                          |
 | ------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | value         | array    | The data of your state.                                                                                                                                                                              |
 | setValue      | function | The usual setState function. Use it if you want control over your state.                                                                                                                             |
 | insert        | function | `(data: T, index?: number) => void` <br /> Add data to your state at an index. By default it will add the data at the end.                                                                           |
+| insertMany    | function | `(data: T[], index?: number) => void` <br /> Add array of data to your state at an index. Defaults are similar to insert function.                                                                   |
 | update        | function | `(data: T, index: number) => void` <br /> Update your state data at an index.                                                                                                                        |
 | partialUpdate | function | `(data: Partial<T>, index: number) => void` <br /> Update only the data that you passed at an index. Other remaining data will be unchanged. (Only usable when your state contains array of objects) |
 | remove        | function | `(index: number) => void` <br /> Delete your state data at an index.                                                                                                                                 |
