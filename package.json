@@ -11,13 +11,15 @@
     "dev": "tsc -w",
     "build": "pnpm build:esm && pnpm build:cjs",
     "build:esm": "tsc",
-    "build:cjs": "tsc --module commonjs --outDir lib/cjs"
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs",
+    "release": "release-it"
   },
   "devDependencies": {
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "release-it": "^15.4.2",
     "typescript": "^4.8.3"
   },
   "peerDependencies": {

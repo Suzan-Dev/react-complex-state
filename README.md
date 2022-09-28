@@ -6,7 +6,7 @@ A custom hook that makes it easy when working with complex state in react.
 
 ## When to use it?
 
-You can consider using it when you have a **complex state** like array of strings or array of objects etc. Basically the state must have an array of _any_ data types.
+You can consider using it when you have a **complex state** like _array of strings_ or _array of objects_ etc. Basically the state must have an **array** of _any_ data types.
 
 ## Installation
 
