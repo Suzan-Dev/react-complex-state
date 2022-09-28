@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import useComplexState from "react-complex-state";
+import { useComplexState } from "react-complex-state";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 
@@ -9,7 +9,10 @@ const generateFakeData = () => ({
 });
 
 function App() {
-  const complexState = useComplexState([generateFakeData()]);
+  const complexState = useComplexState([
+    generateFakeData(),
+    generateFakeData(),
+  ]);
 
   return (
     <div className="App">
@@ -30,20 +33,32 @@ function App() {
         </div>
       ))}
 
-      <button onClick={() => complexState.insert(generateFakeData(), 0)}>
-        Add
-      </button>
-      <button onClick={() => complexState.update(generateFakeData(), 0)}>
-        Update
-      </button>
-      <button
-        onClick={() =>
-          complexState.partialUpdate({ fullName: faker.name.fullName() }, 0)
-        }
-      >
-        Partial Update
-      </button>
-      <button onClick={() => complexState.remove(0)}>Delete</button>
+      <div>
+        <button onClick={() => complexState.insert(generateFakeData(), 0)}>
+          Add
+        </button>
+        <button onClick={() => complexState.update(generateFakeData(), 0)}>
+          Update
+        </button>
+        <button
+          onClick={() =>
+            complexState.partialUpdate({ fullName: faker.name.fullName() }, 1)
+          }
+        >
+          Partial Update
+        </button>
+        <button onClick={() => complexState.remove(0)}>Delete</button>
+      </div>
+
+      <div>
+        <button
+          onClick={() =>
+            complexState.insertMany([generateFakeData(), generateFakeData()])
+          }
+        >
+          Add Many
+        </button>
+      </div>
     </div>
   );
 }
