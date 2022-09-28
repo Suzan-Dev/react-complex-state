@@ -5,18 +5,26 @@ import isInvalidOrNegativeIndex from "./utils/validateIndex";
 /**
  * A custom hook that makes it easy when working with complex state. Only supports state that has an array type.
  */
-const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
+export const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
   const [complexState, setComplexState] = useState(initialValue);
 
-  const insert = (data: T, index: number = -1) => {
+  const insert = (data: T | T[], index: number = -1) => {
     if (isInvalidOrNegativeIndex(index, complexState)) {
-      setComplexState((prevState) => [...prevState, data]);
+      if (Array.isArray(data)) {
+        setComplexState((prevState) => [...prevState, ...data]);
+      } else {
+        setComplexState((prevState) => [...prevState, data]);
+      }
       return;
     }
 
     setComplexState((prevState) => {
       return prevState.slice(0, index).concat(data, prevState.slice(index));
     });
+  };
+
+  const insertMany = (data: T[], index: number = -1) => {
+    insert(data, index);
   };
 
   const update = (data: T, index: number) => {
@@ -65,10 +73,9 @@ const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
     value: complexState,
     setValue: setComplexState,
     insert,
+    insertMany,
     update,
     partialUpdate,
     remove,
   };
 };
-
-export default useComplexState;
