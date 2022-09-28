@@ -42,5 +42,10 @@
   "bugs": {
     "url": "https://github.com/Suzan-Dev/react-complex-state/issues"
   },
-  "homepage": "https://github.com/Suzan-Dev/react-complex-state"
+  "homepage": "https://github.com/Suzan-Dev/react-complex-state",
+  "release-it": {
+    "github": {
+      "release": true
+    }
+  }
 }
