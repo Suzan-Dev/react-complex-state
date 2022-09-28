@@ -36,14 +36,17 @@ Pass the state you want to use in `useComplexState` hook like you do in `useStat
 import useComplexState from "react-complex-state";
 
 function App() {
-  const complexState = useComplexState(["John", "Doe"]);
+  const complexState = useComplexState(["John", "William"]);
 
   return (
-    <div>
-      {complexState.value.map((item) => (
-        <p key={item}>{item}</p>
-      ))}
-    </div>
+    <>
+      <div>
+        {complexState.value.map((item) => (
+          <p key={item}>{item}</p>
+        ))}
+      </div>
+      <button onClick={() => complexState.insert("Noah")}>Add</button>
+    </>
   );
 }
 
