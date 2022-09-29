@@ -6,7 +6,7 @@ A custom hook that makes it easy when working with complex state in react.
 
 ## When to use it?
 
-You can consider using it when you have a **complex state** like _array of strings_ or _array of objects_ etc. Basically the state must have an **array** of _any_ data types.
+Consider using it when you have a **complex state**, such as an _array of strings_ or _array of objects_. Essentially, the state must contain an **array** of _any_ data type.
 
 ## Installation
 
@@ -64,6 +64,7 @@ export default App;
 | update        | function | `(data: T, index: number) => void` <br /> Update your state data at an index.                                                                                                                        |
 | partialUpdate | function | `(data: Partial<T>, index: number) => void` <br /> Update only the data that you passed at an index. Other remaining data will be unchanged. (Only usable when your state contains array of objects) |
 | remove        | function | `(index: number) => void` <br /> Delete your state data at an index.                                                                                                                                 |
+| removeMany    | function | `(indexes: number[]) => void` <br /> Delete many data of your state at provided indexes.                                                                                                             |
 
 ## License
 
