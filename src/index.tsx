@@ -69,6 +69,16 @@ export const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
     });
   };
 
+  const removeMany = (indexes: number[]) => {
+    const filteredValidIndexes = indexes.filter(
+      (index) => !isInvalidOrNegativeIndex(index, complexState)
+    );
+
+    setComplexState((prevState) => {
+      return prevState.filter((_, idx) => !filteredValidIndexes.includes(idx));
+    });
+  };
+
   return {
     value: complexState,
     setValue: setComplexState,
@@ -77,5 +87,6 @@ export const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
     update,
     partialUpdate,
     remove,
+    removeMany,
   };
 };
