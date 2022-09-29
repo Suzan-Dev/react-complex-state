@@ -58,6 +58,9 @@ function App() {
         >
           Add Many
         </button>
+        <button onClick={() => complexState.removeMany([0, 1, 2])}>
+          Delete Many
+        </button>
       </div>
     </div>
   );
