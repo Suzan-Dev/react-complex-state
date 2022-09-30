@@ -59,6 +59,33 @@ export const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
     });
   };
 
+  const partialUpdateMany = (data: Partial<T>, indexes: number[]) => {
+    if (typeof data !== "object") {
+      return;
+    }
+
+    const filteredValidIndexes = indexes.filter(
+      (index) => !isInvalidOrNegativeIndex(index, complexState)
+    );
+
+    if (!filteredValidIndexes.length) {
+      return;
+    }
+
+    setComplexState((prevState) => {
+      const newClonedComplexState = cloneDeep(prevState);
+
+      filteredValidIndexes.forEach((index) => {
+        newClonedComplexState[index] = {
+          ...newClonedComplexState[index],
+          ...data,
+        };
+      });
+
+      return newClonedComplexState;
+    });
+  };
+
   const remove = (index: number) => {
     if (isInvalidOrNegativeIndex(index, complexState)) {
       return;
@@ -74,6 +101,10 @@ export const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
       (index) => !isInvalidOrNegativeIndex(index, complexState)
     );
 
+    if (!filteredValidIndexes.length) {
+      return;
+    }
+
     setComplexState((prevState) => {
       return prevState.filter((_, idx) => !filteredValidIndexes.includes(idx));
     });
@@ -86,6 +117,7 @@ export const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
     insertMany,
     update,
     partialUpdate,
+    partialUpdateMany,
     remove,
     removeMany,
   };
