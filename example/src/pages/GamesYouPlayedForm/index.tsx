@@ -14,9 +14,14 @@ interface PlayedVideoGames {
   rating: string;
 }
 
+const initialState = {
+  title: "",
+  playedDate: "",
+  rating: "",
+};
+
 const GamesYouPlayedForm = () => {
   const playedVideoGames = useComplexState<PlayedVideoGames>([]);
-  console.log(playedVideoGames.value);
 
   return (
     <>
@@ -25,11 +30,7 @@ const GamesYouPlayedForm = () => {
         <Button
           onClick={() => {
             if (playedVideoGames.value.length < 5) {
-              playedVideoGames.insert({
-                title: "",
-                playedDate: "",
-                rating: "",
-              });
+              playedVideoGames.insert(initialState);
             }
           }}
         >

@@ -55,16 +55,17 @@ export default App;
 
 ## Returns
 
-| return        | type     | description                                                                                                                                                                                          |
-| ------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| value         | array    | The data of your state.                                                                                                                                                                              |
-| setValue      | function | The usual setState function. Use it if you want control over your state.                                                                                                                             |
-| insert        | function | `(data: T, index?: number) => void` <br /> Add data to your state at an index. By default it will add the data at the end.                                                                           |
-| insertMany    | function | `(data: T[], index?: number) => void` <br /> Add array of data to your state at an index. Defaults are similar to insert function.                                                                   |
-| update        | function | `(data: T, index: number) => void` <br /> Update your state data at an index.                                                                                                                        |
-| partialUpdate | function | `(data: Partial<T>, index: number) => void` <br /> Update only the data that you passed at an index. Other remaining data will be unchanged. (Only usable when your state contains array of objects) |
-| remove        | function | `(index: number) => void` <br /> Delete your state data at an index.                                                                                                                                 |
-| removeMany    | function | `(indexes: number[]) => void` <br /> Delete many data of your state at provided indexes.                                                                                                             |
+| return            | type     | description                                                                                                                                                                                          |
+| ----------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| value             | array    | The data of your state.                                                                                                                                                                              |
+| setValue          | function | The usual `setState` function. Use it if you want control over your state.                                                                                                                           |
+| insert            | function | `(data: T, index?: number) => void` <br /> Add data to your state at an index. By default it will add the data at the end.                                                                           |
+| insertMany        | function | `(data: T[], index?: number) => void` <br /> Add array of data to your state at an index. Defaults are similar to `insert` function.                                                                 |
+| update            | function | `(data: T, index: number) => void` <br /> Update your state data at an index.                                                                                                                        |
+| partialUpdate     | function | `(data: Partial<T>, index: number) => void` <br /> Update only the data that you passed at an index. Other remaining data will be unchanged. (Only usable when your state contains array of objects) |
+| partialUpdateMany | function | `(data: Partial<T>, indexes: number[]) => void` <br /> Similar to `partialUpdate` function but update multiple data at once.                                                                         |
+| remove            | function | `(index: number) => void` <br /> Delete your state data at an index.                                                                                                                                 |
+| removeMany        | function | `(indexes: number[]) => void` <br /> Delete multiple data of your state at provided indexes.                                                                                                         |
 
 ## License
 
