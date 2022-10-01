@@ -8,6 +8,37 @@ import isInvalidOrNegativeIndex from "./utils/validateIndex";
 export const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
   const [complexState, setComplexState] = useState(initialValue);
 
+  const getFilteredData = (filter?: Partial<T>): T[] => {
+    if (!filter) {
+      return complexState;
+    } else if (typeof filter !== "object") {
+      return complexState.filter((item) => item === filter);
+    } else {
+      return complexState.filter((stateItem) => {
+        const filterKeys = Object.keys(filter);
+        const filterValues = Object.values(filter);
+
+        const resultFilter = filterKeys.map(
+          (_, index) =>
+            `${stateItem[filterKeys[index]]}` === `${filterValues[index]}`
+        );
+        return Function("return " + resultFilter.join(" && "))();
+      });
+    }
+  };
+
+  const count = (filter?: Partial<T>): number => {
+    return getFilteredData(filter).length;
+  };
+
+  const find = (filter?: Partial<T>): T[] => {
+    return getFilteredData(filter);
+  };
+
+  const findOne = (filter: Partial<T>): T | null => {
+    return getFilteredData(filter)[0] || null;
+  };
+
   const insert = (data: T | T[], index: number = -1) => {
     if (isInvalidOrNegativeIndex(index, complexState)) {
       if (Array.isArray(data)) {
@@ -113,6 +144,9 @@ export const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
   return {
     value: complexState,
     setValue: setComplexState,
+    count,
+    find,
+    findOne,
     insert,
     insertMany,
     update,
