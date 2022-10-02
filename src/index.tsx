@@ -31,7 +31,7 @@ export const useComplexState = <T extends Partial<T>>(initialValue: T[]) => {
     return getFilteredData(filter).length;
   };
 
-  const find = (filter?: Partial<T>): T[] => {
+  const find = (filter?: Partial<T>): T[] | [] => {
     return getFilteredData(filter);
   };
 
