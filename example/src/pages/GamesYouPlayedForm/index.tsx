@@ -49,7 +49,6 @@ const GamesYouPlayedForm = () => {
             />
             <Input
               placeholder="Played Date"
-              type="number"
               value={videoGame.playedDate}
               onChange={(e) =>
                 playedVideoGames.partialUpdate(
@@ -88,6 +87,8 @@ const GamesYouPlayedForm = () => {
       )}
 
       {playedVideoGames.value.length === 5 && <p>You cannot add any more</p>}
+      <p>Total Played Games: {playedVideoGames.count()}</p>
+      <p>Total Full Rating Games: {playedVideoGames.count({ rating: "10" })}</p>
     </>
   );
 };
